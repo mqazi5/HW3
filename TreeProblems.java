@@ -20,6 +20,7 @@ public class TreeProblems {
    */
   
   public static Set<Integer> different(Set<Integer> setA, Set<Integer> setB) {
+    
 
     // INSERT CODE HERE - DO NOT FORGET TO PLACE YOUR NAME ABOVE
     //
@@ -27,7 +28,18 @@ public class TreeProblems {
     // *several* lines of code. Hint: create two temporary TreeSets and utilize the
     // methods retainAll(), addAll(), and removeAll(). But in the end, get something to work.
 
-    return setA;
+    Set<Integer> setC = new TreeSet<>(setA); //creats a new treeSet with all the elemts from setA
+
+    setC.addAll(setB); //adds the elements of setB to setC
+
+    Set<Integer> similar = new TreeSet<>(setA); //creats a new set called similar to store the simialr elments
+
+    similar.retainAll(setB); //adds all the common elements into similar
+
+    setC.removeAll(similar); // removes all the similar elemtns from setC leaving only the elements that are different from both setA and setB
+
+    return setC;  
+    
   }
 
 
@@ -41,6 +53,19 @@ public class TreeProblems {
   public static void removeEven(Map<Integer, String> treeMap) {
 
     // INSERT CODE HERE.
+
+    List<Integer> remove = new ArrayList<>(); //creates a new array list to hold the even keys
+
+   //for loop that goes through the keys in teh tree and checks for the even ones and adds them to the remove arrayList
+   for (Integer key : treeMap.keySet()) {
+    if (key % 2 == 0) {
+        remove.add(key);
+    }
+  }
+    //for loop that works on the removal of the elements inside the remove arrayList which are the even keys
+    for (int i = 0; i < remove.size(); i++) {
+      treeMap.remove(remove.get(i));
+  }
 
     return;
   }
@@ -56,8 +81,7 @@ public class TreeProblems {
   public boolean treesEqual(Map<Integer, String> tree1,Map<Integer, String> tree2 ) {
 
     // INSERT CODE HERE
-
-    return false;
+    return tree1.equals(tree2); //uses the .equal() method to check if the trees are equal
 
   }
 
